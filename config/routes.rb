@@ -1,11 +1,15 @@
 Depot::Application.routes.draw do
+  resources :orders
+
   resources :line_items
 
   resources :carts
 
   get "store/index"
 
-  resources :products
+  resources :products do
+    get :who_bought, on: :member
+  end
 
   # ...
   # The priority is based upon order of creation:
@@ -59,7 +63,6 @@ Depot::Application.routes.draw do
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
   root to: 'store#index', as: 'store'
-
   # ...
 
   # See how all your routes lay out with "rake routes"
